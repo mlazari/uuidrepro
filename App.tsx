@@ -5,6 +5,8 @@
  * @format
  */
 
+import 'react-native-get-random-values';
+
 import React from 'react';
 import type {PropsWithChildren} from 'react';
 import {
@@ -16,6 +18,7 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
+import { v4 as uuidv4 } from 'uuid';
 
 import {
   Colors,
@@ -62,6 +65,8 @@ function App(): React.JSX.Element {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
+  const uniqueId = React.useMemo(() => uuidv4(), []);
+
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar
@@ -72,6 +77,7 @@ function App(): React.JSX.Element {
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
         <Header />
+        <Text style={{ color: isDarkMode ? Colors.white : Colors.black }}>Unique id: {uniqueId}</Text>
         <View
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
